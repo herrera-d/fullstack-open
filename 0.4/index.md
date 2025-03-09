@@ -1,6 +1,6 @@
 # Creating a new note
 
-This diagram is for documenting how the create a new note works in this app => https://studies.cs.helsinki.fi/exampleapp/notes
+This diagram is for documenting how the create a new note works in https://studies.cs.helsinki.fi/exampleapp/notes
 <br/>
 
 ```mermaid
@@ -37,10 +37,6 @@ activate Server
     Server-->>Browser: data.json / 200 OK
 deactivate Server
 
-Browser->>Server: GET chrome-extension://nhdogjmejiglipccpnnnanhbledajbpd/dist/detector.js
-activate Server
-    Server-->>Browser: detector.js / 200 OK
-deactivate Server
 
 
 
