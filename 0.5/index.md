@@ -1,4 +1,4 @@
-# Creating a new note
+# Starting Spa
 
 This diagram is for documenting a user accesing the Single page application https://studies.cs.helsinki.fi/exampleapp/spa.
 
