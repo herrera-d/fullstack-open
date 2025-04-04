@@ -1,4 +1,16 @@
 const Header = ({ course }: { course: string }) => <h1>{course}</h1>
+
+interface PartProps {
+  data: { text: string; exercise: number }
+}
+const Part = ({ data }: PartProps) => (
+  <>
+    <p>
+      {data.text} {data.exercise}
+    </p>
+  </>
+)
+
 const Content = ({
   part1,
   exercises1,
@@ -15,15 +27,9 @@ const Content = ({
   exercises3: number
 }) => (
   <>
-    <p>
-      {part1} {exercises1}
-    </p>
-    <p>
-      {part2} {exercises2}
-    </p>
-    <p>
-      {part3} {exercises3}
-    </p>
+    <Part data={{ text: part1, exercise: exercises1 }} />
+    <Part data={{ text: part2, exercise: exercises2 }} />
+    <Part data={{ text: part3, exercise: exercises3 }} />
   </>
 )
 
