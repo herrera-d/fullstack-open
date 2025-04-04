@@ -1,35 +1,32 @@
 const Header = ({ course }: { course: string }) => <h1>{course}</h1>
 
 interface PartProps {
-  data: { text: string; exercise: number }
+  data: { name: string; exercise: number }
 }
 const Part = ({ data }: PartProps) => (
   <>
     <p>
-      {data.text} {data.exercise}
+      {data.name} {data.exercise}
     </p>
   </>
 )
 
-const Content = ({
-  part1,
-  exercises1,
-  part2,
-  exercises2,
-  part3,
-  exercises3,
-}: {
-  part1: string
-  exercises1: number
-  part2: string
-  exercises2: number
-  part3: string
-  exercises3: number
-}) => (
+interface Part {
+  name: string
+  exercises: number
+}
+
+interface ContenProps {
+  part2: Part
+  part1: Part
+  part3: Part
+}
+
+const Content = ({ part1, part2, part3 }: ContenProps) => (
   <>
-    <Part data={{ text: part1, exercise: exercises1 }} />
-    <Part data={{ text: part2, exercise: exercises2 }} />
-    <Part data={{ text: part3, exercise: exercises3 }} />
+    <Part data={{ name: part1.name, exercise: part1.exercises }} />
+    <Part data={{ name: part2.name, exercise: part2.exercises }} />
+    <Part data={{ name: part3.name, exercise: part3.exercises }} />
   </>
 )
 
@@ -46,32 +43,29 @@ const Total = ({
 const App = () => {
   // const-definitions
   const course = "Half Stack application development"
-  const part1 = "Fundamentals of React"
-  const exercises1 = 10
-  const part2 = "Using props to pass data"
-  const exercises2 = 7
-  const part3 = "State of a component"
-  const exercises3 = 14
-
-  const contentData = {
-    part1,
-    exercises1,
-    part2,
-    exercises2,
-    part3,
-    exercises3,
+  const part1 = {
+    name: "Fundamentals of React",
+    exercises: 10,
+  }
+  const part2 = {
+    name: "Using props to pass data",
+    exercises: 7,
+  }
+  const part3 = {
+    name: "State of a component",
+    exercises: 14,
   }
 
   return (
-    <div>
+    <>
       <Header course={course} />
-      <Content {...contentData} />
+      <Content part1={part1} part2={part2} part3={part3} />
       <Total
-        exercises1={exercises1}
-        exercises2={exercises2}
-        exercises3={exercises3}
+        exercises1={part1.exercises}
+        exercises2={part2.exercises}
+        exercises3={part3.exercises}
       />
-    </div>
+    </>
   )
 }
 
