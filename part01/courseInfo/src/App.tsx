@@ -16,29 +16,35 @@ interface Part {
   exercises: number
 }
 
+type Parts = Array<Part>
+
 interface ContenProps {
-  part2: Part
-  part1: Part
-  part3: Part
+  parts: Parts
 }
 
-const Content = ({ part1, part2, part3 }: ContenProps) => (
-  <>
-    <Part data={{ name: part1.name, exercise: part1.exercises }} />
-    <Part data={{ name: part2.name, exercise: part2.exercises }} />
-    <Part data={{ name: part3.name, exercise: part3.exercises }} />
-  </>
-)
+const Content = ({ parts }: ContenProps) => {
+  return parts.map((part) => {
+    return (
+      <>
+        <Part data={{ name: part.name, exercise: part.exercises }} />
+      </>
+    )
+  })
+}
 
-const Total = ({
-  exercises1,
-  exercises2,
-  exercises3,
-}: {
-  exercises1: number
-  exercises2: number
-  exercises3: number
-}) => <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+interface TotalProps {
+  parts: Parts
+}
+
+const Total = ({ parts }: TotalProps) => {
+  const calculation = parts
+    .reduce((acc, item) => {
+      acc = item.exercises + acc
+      return acc
+    }, 0)
+    .toString()
+  return <p>Number of exercises {calculation}</p>
+}
 
 const App = () => {
   // const-definitions
@@ -56,15 +62,13 @@ const App = () => {
     exercises: 14,
   }
 
+  const parts = [part1, part2, part3]
+
   return (
     <>
       <Header course={course} />
-      <Content part1={part1} part2={part2} part3={part3} />
-      <Total
-        exercises1={part1.exercises}
-        exercises2={part2.exercises}
-        exercises3={part3.exercises}
-      />
+      <Content parts={parts} />
+      <Total parts={parts} />
     </>
   )
 }
