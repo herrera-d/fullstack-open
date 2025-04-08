@@ -1,4 +1,4 @@
-const Header = ({ course }: { course: string }) => <h1>{course}</h1>
+const Header = ({ title }: { title: string }) => <h1>{title}</h1>
 
 interface PartProps {
   data: { name: string; exercise: number }
@@ -48,25 +48,29 @@ const Total = ({ parts }: TotalProps) => {
 
 const App = () => {
   // const-definitions
-  const course = "Half Stack application development"
-  const part1 = {
-    name: "Fundamentals of React",
-    exercises: 10,
-  }
-  const part2 = {
-    name: "Using props to pass data",
-    exercises: 7,
-  }
-  const part3 = {
-    name: "State of a component",
-    exercises: 14,
+  const course = {
+    name: "Half Stack application development",
+    parts: [
+      {
+        name: "Fundamentals of React",
+        exercises: 10,
+      },
+      {
+        name: "Using props to pass data",
+        exercises: 7,
+      },
+      {
+        name: "State of a component",
+        exercises: 14,
+      },
+    ],
   }
 
-  const parts = [part1, part2, part3]
+  const { name, parts } = course
 
   return (
     <>
-      <Header course={course} />
+      <Header title={name} />
       <Content parts={parts} />
       <Total parts={parts} />
     </>
